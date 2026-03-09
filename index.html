@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mishri Events — Sweet by Name. Unforgettable by Design.</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%233D2B1F'/><text y='78' x='50' text-anchor='middle' font-size='72' font-family='Georgia,serif' font-style='italic' fill='%23C07A5A'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fig:       #3D2B1F;
+      --fig-mid:   #6B4C3B;
+      --terracotta:#C07A5A;
+      --sand:      #E8D5C0;
+      --sand-light:#F4EDE3;
+      --parchment: #FAF6EF;
+      --sage:      #8A9E8C;
+      --sage-light:#C8D5C9;
+      --blush:     #E8C4A8;
+      --gold:      #B8925A;
+      --gold-warm: #D4AA72;
+      --white:     #FFFDF9;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--parchment);
+      color: var(--fig);
+      overflow-x: hidden;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025; pointer-events: none; z-index: 1000;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 64px;
+      background: rgba(250,246,239,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(184,146,90,.12);
+      transition: padding .4s ease, box-shadow .4s ease;
+    }
+    nav.stuck {
+      padding: 14px 64px;
+      box-shadow: 0 4px 24px rgba(61,43,31,.06);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 400;
+      color: var(--fig); text-decoration: none; letter-spacing: .04em;
+    }
+    .logo sup { font-size:.5rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracotta); vertical-align:super; margin-left:4px; }
+    .nav-links { display:flex; gap:36px; list-style:none; }
+    .nav-links a {
+      font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--fig-mid); text-decoration:none; transition:color .3s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta {
+      font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--white); background:var(--terracotta);
+      text-decoration:none; padding:11px 28px; transition:background .3s ease;
+    }
+    .nav-cta:hover { background: var(--fig); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 55% 45%;
+      position: relative; overflow: hidden;
+    }
+    .hero-left {
+      display:flex; flex-direction:column; justify-content:center;
+      padding: 120px 64px 80px; position:relative; z-index:2;
+    }
+    .hero-kicker {
+      display:flex; align-items:center; gap:14px;
+      font-size:.65rem; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--terracotta); margin-bottom:32px;
+      opacity:0; animation: riseIn .7s ease .15s forwards;
+    }
+    .hero-kicker-line { width:32px; height:1px; background:currentColor; }
+    .hero-h1 {
+      font-family:'Playfair Display', serif;
+      font-size: clamp(3.2rem, 5.2vw, 5.6rem);
+      font-weight:400; line-height:1.05; color:var(--fig); margin-bottom:36px;
+      opacity:0; animation: riseIn .8s ease .3s forwards;
+    }
+    .hero-h1 em { font-style:italic; color:var(--terracotta); }
+    .hero-body {
+      font-size:.95rem; line-height:1.95; font-weight:300;
+      color:var(--fig-mid); max-width:420px; margin-bottom:16px;
+      opacity:0; animation: riseIn .8s ease .5s forwards;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--terracotta); margin-bottom: 40px;
+      opacity:0; animation: riseIn .8s ease .58s forwards;
+    }
+    .hero-actions {
+      display:flex; align-items:center; gap:24px;
+      opacity:0; animation: riseIn .8s ease .72s forwards;
+    }
+    .btn-warm {
+      background:var(--fig); color:var(--sand-light);
+      font-family:'DM Sans',sans-serif;
+      font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+      text-decoration:none; padding:16px 40px; transition:background .3s;
+    }
+    .btn-warm:hover { background: var(--terracotta); }
+    .btn-ghost {
+      font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--fig-mid); text-decoration:none;
+      border-bottom:1px solid rgba(61,43,31,.25); padding-bottom:3px;
+      transition:color .3s, border-color .3s;
+    }
+    .btn-ghost:hover { color:var(--terracotta); border-color:var(--terracotta); }
+    .hero-right {
+      position:relative; overflow:hidden;
+      opacity:0; animation: fadeIn 1.1s ease .4s forwards;
+    }
+    .hero-image-wrap {
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--sand-light) 50%, var(--sand) 100%);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hero-image-wrap img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero-img-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(250,246,239,0) 60%, rgba(250,246,239,.15) 100%);
+    }
+    .hero-decorative {
+      width:340px; height:420px;
+      border:1px solid rgba(184,146,90,.3);
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hero-decorative::before {
+      content:''; position:absolute; inset:12px;
+      border:1px solid rgba(184,146,90,.15);
+    }
+    .hero-decorative-text {
+      font-family:'Playfair Display',serif;
+      font-size:6rem; font-weight:400;
+      color:rgba(184,146,90,.18); letter-spacing:-.02em;
+      font-style:italic; user-select:none;
+    }
+    .hero-badge {
+      position:absolute; bottom:60px; right:60px;
+      width:120px; height:120px;
+      background:var(--fig); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      animation: rotate 20s linear infinite;
+    }
+    .hero-badge-num {
+      font-family:'Playfair Display',serif;
+      font-size:2rem; color:var(--gold-warm); font-weight:400; line-height:1;
+    }
+    .hero-badge-label {
+      font-size:.5rem; color:var(--sand-light);
+      letter-spacing:.15em; text-transform:uppercase; margin-top:4px; text-align:center;
+    }
+    .hero-scroll {
+      display:flex; align-items:center; gap:12px;
+      margin-top: 32px;
+      font-size:.62rem; letter-spacing:.25em; text-transform:uppercase;
+      color:var(--fig-mid);
+      opacity:0; animation: fadeIn 1s ease 1.4s forwards;
+    }
+    .scroll-line {
+      width:40px; height:1px; background:var(--terracotta);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { transform:scaleX(1); opacity:1; }
+      50% { transform:scaleX(0.6); opacity:0.5; }
+    }
+
+    /* STRIP */
+    .strip {
+      background:var(--fig); padding:0 64px;
+      display:flex; align-items:stretch; overflow-x:auto;
+    }
+    .strip-item {
+      flex:1; min-width:120px; padding:52px 16px;
+      border-right:1px solid rgba(255,255,255,.06);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; gap:16px;
+      opacity:1; transform:none;
+      transition:opacity .6s ease, transform .6s ease;
+    }
+    .strip-item.animate { opacity:0; transform:translateY(18px); }
+    .strip-item.animate.vis { opacity:1; transform:none; }
+    .strip-item:last-child { border-right:none; }
+    .strip-icon { width:36px; height:36px; opacity:.7; }
+    .strip-label { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(244,237,227,.5); }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      padding:130px 64px;
+      display:grid; grid-template-columns:1fr 1.1fr;
+      gap:90px; align-items:center;
+    }
+    .philosophy-left { position:relative; }
+    .phil-img-outer { width:100%; padding-bottom:115%; position:relative; overflow:hidden; }
+    .phil-img-bg { position:absolute; inset:0; background:linear-gradient(145deg, var(--blush) 0%, var(--terracotta) 60%, var(--fig) 100%); }
+    .phil-img-text {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-size:5rem; font-style:italic;
+      color:rgba(255,255,255,.12); letter-spacing:-.02em;
+    }
+    .phil-accent {
+      position:absolute; bottom:-28px; right:-28px;
+      width:180px; height:180px; background:var(--white);
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:4px;
+      box-shadow:0 12px 48px rgba(61,43,31,.12);
+      border: 1px solid rgba(184,146,90,.15);
+    }
+    .phil-accent-num { font-family:'Playfair Display',serif; font-size:2.8rem; color:var(--terracotta); line-height:1; }
+    .phil-accent-text { font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--fig-mid); text-align:center; padding:0 16px; }
+    .eyebrow {
+      font-size:.65rem; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--terracotta); margin-bottom:18px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .eyebrow::before { content:''; width:24px; height:1px; background:currentColor; }
+    h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.2vw,3.2rem); font-weight:400; line-height:1.18; color:var(--fig); margin-bottom:28px; }
+    h2 em { font-style:italic; color:var(--terracotta); }
+    .body-text { font-size:.92rem; line-height:2; font-weight:300; color:var(--fig-mid); margin-bottom:18px; }
+    .pull-quote {
+      margin:36px 0; padding:24px 28px;
+      border-left:3px solid var(--terracotta);
+      background:rgba(192,122,90,.07);
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:1.15rem; line-height:1.65; color:var(--fig-mid);
+    }
+    .years-callout {
+      display: flex; align-items: center; gap: 32px;
+      margin-top: 36px; padding: 24px 28px;
+      background: var(--sand-light);
+      border-left: 3px solid var(--terracotta);
+      flex-wrap: wrap;
+    }
+    .years-stat { display:flex; flex-direction:column; gap:4px; }
+    .years-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 400; color: var(--terracotta);
+      line-height: 1; flex-shrink: 0;
+    }
+    .years-text {
+      font-size: .78rem; line-height: 1.6; color: var(--fig); font-weight: 400;
+    }
+    .years-text span { color: var(--fig-mid); font-weight: 300; font-size: .72rem; }
+    .years-divider { width:1px; height:48px; background:rgba(61,43,31,.12); flex-shrink:0; }
+    .sig { font-family:'Playfair Display',serif; font-size:2rem; font-style:italic; font-weight:400; color:var(--gold); margin-top:36px; }
+    .sig-sub { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--fig-mid); margin-top:6px; }
+
+    /* SERVICES */
+    .services { padding:130px 64px; background:var(--sand-light); position:relative; overflow:hidden; }
+    .services-bg-word {
+      position:absolute; bottom:-40px; right:-20px;
+      font-family:'Playfair Display',serif; font-size:16rem; font-style:italic;
+      color:rgba(61,43,31,.04); pointer-events:none; white-space:nowrap; line-height:1;
+    }
+    .services-intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:80px; align-items:end; }
+    .services-tagline { font-size:.92rem; line-height:1.95; font-weight:300; color:var(--fig-mid); max-width:380px; }
+    .services-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+    @media (max-width: 1100px) {
+      .services-cards { grid-template-columns:repeat(2,1fr); }
+      .svc { padding:36px 28px; }
+    }
+    .svc {
+      background:var(--white); padding:48px 36px;
+      border-bottom:3px solid transparent;
+      transition:border-color .3s, transform .3s; position:relative;
+    }
+    .svc:hover { border-color:var(--terracotta); transform:translateY(-5px); }
+    .svc-icon { width:48px; height:48px; margin-bottom:28px; }
+    .svc-num { position:absolute; top:24px; right:28px; font-family:'Playfair Display',serif; font-size:4rem; font-style:italic; color:rgba(61,43,31,.05); line-height:1; }
+    .svc-name { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; color:var(--fig); margin-bottom:14px; }
+    .svc-desc { font-size:.82rem; line-height:1.9; font-weight:300; color:var(--fig-mid); }
+
+    /* COMMUNITY */
+    .community { padding:130px 64px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .values-list { margin-top:44px; }
+    .val { padding:28px 0; border-bottom:1px solid rgba(61,43,31,.08); border-top: 2px solid transparent; }
+    .val:first-child { border-top-color: var(--terracotta); }
+    .val-name { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; color:var(--fig); margin-bottom:8px; }
+    .val-desc { font-size:.8rem; line-height:1.85; font-weight:300; color:var(--fig-mid); }
+    .community-visual { position:sticky; top:120px; }
+    .comm-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:240px 240px; gap:12px; }
+    .comm-block:nth-child(4) { background:var(--sand); }
+    .comm-block { display:flex; align-items:flex-end; justify-content:flex-start; padding:20px; position:relative; overflow:hidden; }
+    .comm-block:nth-child(1) { background:linear-gradient(160deg, var(--blush) 0%, var(--terracotta) 100%); }
+    .comm-block:nth-child(2) { background:var(--fig); }
+    .comm-block:nth-child(3) { background:var(--sage-light); }
+    .comm-block img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .comm-block-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(28,20,15,.55) 0%, transparent 60%); }
+    .comm-tag { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.55); background:rgba(0,0,0,.15); padding:5px 10px; backdrop-filter:blur(4px); }
+    .comm-tag.dark { color:rgba(61,43,31,.6); background:rgba(255,255,255,.35); }
+    .comm-center-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:2.8rem; font-style:italic; color:rgba(255,255,255,.15); pointer-events:none; }
+
+    /* VENUE */
+    .venue { background:var(--fig); padding:120px 64px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; position:relative; overflow:hidden; }
+    .venue::before { content:''; position:absolute; bottom:-80px; right:-80px; width:400px; height:400px; border-radius:50%; background:rgba(184,146,90,.06); }
+    .venue .eyebrow { color:var(--gold-warm); }
+    .venue .eyebrow::before { background:var(--gold-warm); }
+    .venue h2 { color:var(--sand-light); }
+    .venue h2 em { color:var(--gold-warm); }
+    .venue-desc { font-size:.92rem; line-height:2; font-weight:300; color:rgba(244,237,227,.55); margin-bottom:36px; }
+    .venue-pill { display:inline-block; border:1px solid rgba(184,146,90,.35); color:var(--gold-warm); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; padding:8px 20px; margin-bottom:36px; }
+    .venue-features { display:flex; flex-wrap:wrap; gap:16px; margin-top:36px; }
+    .venue-feat { display:flex; align-items:center; gap:10px; font-size:.75rem; color:rgba(244,237,227,.45); letter-spacing:.05em; }
+    .venue-feat-dot { width:4px; height:4px; background:var(--gold-warm); border-radius:50%; }
+    .venue-visual { position:relative; }
+    .venue-frame { width:100%; padding-bottom:105%; position:relative; background:linear-gradient(155deg, rgba(255,255,255,.05) 0%, rgba(184,146,90,.08) 100%); border:1px solid rgba(184,146,90,.15); }
+    .venue-frame-inner { position:absolute; inset:20px; border:1px solid rgba(184,146,90,.08); display:flex; align-items:center; justify-content:center; }
+    .venue-wordmark { font-family:'Playfair Display',serif; font-size:1.4rem; font-style:italic; color:rgba(184,146,90,.3); text-align:center; line-height:1.6; }
+    .venue-badge { position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--terracotta); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+    .vb-new { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+    .vb-open { font-family:'Playfair Display',serif; font-size:1rem; font-style:italic; color:var(--white); }
+
+    /* PORTFOLIO */
+    .portfolio { padding:130px 64px; background:var(--parchment); }
+    .port-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; }
+    .port-link { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracotta); text-decoration:none; border-bottom:1px solid var(--terracotta); padding-bottom:3px; transition:opacity .3s; }
+    .port-link:hover { opacity:.6; }
+    .port-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:auto auto; gap:20px; }
+    .port-card { position:relative; overflow:hidden; background:var(--sand); cursor:pointer; }
+    .port-card:nth-child(1) { grid-row:span 2; }
+    .port-img { width:100%; transition:transform .6s ease; }
+    .port-card:nth-child(1) .port-img { height:580px; }
+    .port-card:nth-child(2) .port-img, .port-card:nth-child(3) .port-img,
+    .port-card:nth-child(4) .port-img, .port-card:nth-child(5) .port-img,
+    .port-card:nth-child(6) .port-img { height:260px; }
+    .port-card:hover .port-img { transform:scale(1.04); }
+    .port-bg-1 { background:linear-gradient(150deg,#E8C4A8 0%,#C07A5A 100%); }
+    .port-bg-2 { background:linear-gradient(150deg,#2C2C2A 0%,#1C1C18 100%); }
+    .port-bg-3 { background:linear-gradient(150deg,#C8D5C9 0%,#8A9E8C 100%); }
+    .port-bg-4 { background:linear-gradient(150deg,#D4B89A 0%,#A0785A 100%); }
+    .port-bg-5 { background:linear-gradient(150deg,#E8D5C0 0%,#B8925A 100%); }
+    .port-bg-6 { background:linear-gradient(150deg,#C8D5C9 0%,#5A7A5C 100%); }
+    .port-center { display:flex; align-items:center; justify-content:center; height:100%; }
+    .port-glyph { font-family:'Playfair Display',serif; font-size:4rem; font-style:italic; color:rgba(255,255,255,.15); }
+    .port-info { position:absolute; bottom:0; left:0; right:0; padding:20px 24px; background:linear-gradient(to top,rgba(28,20,15,.65) 0%,transparent 100%); transform:translateY(4px); opacity:0; transition:opacity .3s, transform .3s; }
+    .port-card:hover .port-info { opacity:1; transform:none; }
+    .port-type { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-warm); margin-bottom:5px; }
+    .port-name { font-family:'Playfair Display',serif; font-size:1.1rem; font-style:italic; color:var(--white); }
+
+    /* TESTIMONIAL */
+    .testi { background:var(--sand-light); padding:110px 64px; display:grid; grid-template-columns:1fr 2fr 1fr; gap:40px; align-items:center; }
+    .testi-mark { font-family:'Playfair Display',serif; font-size:10rem; font-style:italic; color:rgba(192,122,90,.12); line-height:.7; text-align:center; }
+    .testi-body { font-family:'Playfair Display',serif; font-size:clamp(1.35rem,2.2vw,1.9rem); font-style:italic; font-weight:400; line-height:1.6; color:var(--fig); text-align:center; }
+    .testi-attr { font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracotta); text-align:center; margin-top:28px; }
+
+    /* CONTACT */
+    .contact { padding:130px 64px; display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:start; }
+    .contact-note { font-size:.92rem; line-height:1.95; font-weight:300; color:var(--fig-mid); margin-bottom:40px; max-width:380px; }
+    .contact-deets { display:flex; flex-direction:column; gap:18px; margin-top:44px; }
+    .cdeet { display:flex; gap:18px; align-items:baseline; }
+    .cdeet-k { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracotta); width:64px; flex-shrink:0; }
+    .cdeet-v { font-size:.85rem; color:var(--fig); font-weight:300; }
+    .cdeet-v a { color:var(--fig); text-decoration:none; border-bottom:1px solid rgba(61,43,31,.2); transition:color .3s, border-color .3s; }
+    .cdeet-v a:hover { color:var(--terracotta); border-color:var(--terracotta); }
+    .cf { display:flex; flex-direction:column; gap:22px; }
+    .cf form { display:flex; flex-direction:column; gap:22px; }
+    .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .cf-group { display:flex; flex-direction:column; gap:8px; }
+    .cf-group label { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--fig-mid); }
+    .cf-group input, .cf-group select, .cf-group textarea {
+      background:transparent; border:none;
+      border-bottom:1px solid rgba(61,43,31,.2);
+      padding:11px 0; font-family:'DM Sans',sans-serif;
+      font-size:.88rem; color:var(--fig); font-weight:300;
+      outline:none; transition:border-color .3s; width:100%; appearance:none;
+    }
+    .cf-group input:focus, .cf-group select:focus, .cf-group textarea:focus { border-bottom-color:var(--terracotta); }
+    .cf-group textarea { resize:none; height:120px; }
+    .cf-submit {
+      align-self:flex-start; background:var(--fig); color:var(--sand-light);
+      border:none; padding:18px 48px; font-family:'DM Sans',sans-serif;
+      font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+      cursor:pointer; transition:background .3s ease; margin-top:8px;
+    }
+    .cf-submit:hover { background:var(--terracotta); }
+
+    /* FOOTER */
+    footer { background:var(--fig); padding:52px 64px; display:flex; align-items:center; justify-content:space-between; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8925A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .foot-logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:400; color:var(--sand-light); letter-spacing:.04em; }
+    .foot-logo sup { font-size:.45rem; color:var(--terracotta); vertical-align:super; letter-spacing:.2em; }
+    .foot-copy { font-size:.65rem; color:rgba(244,237,227,.3); letter-spacing:.08em; }
+    .foot-links { display:flex; gap:28px; }
+    .foot-links a { font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(244,237,227,.35); text-decoration:none; transition:color .3s; }
+    .foot-links a:hover { color:var(--gold-warm); }
+
+    /* ANIMATIONS */
+    @keyframes riseIn { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    .reveal { opacity:1; transform:none; transition:opacity .75s ease, transform .75s ease; }
+    .reveal.animate { opacity:0; transform:translateY(24px); }
+    .reveal.animate.vis { opacity:1; transform:none; }
+    .reveal.d1 { transition-delay:.15s; }
+    .reveal.d2 { transition-delay:.3s; }
+    .reveal.d3 { transition-delay:.45s; }
+    .strip-item { transition:opacity .6s ease, transform .6s ease; }
+    .strip-item.animate { opacity:0; transform:translateY(18px); }
+    .strip-item.animate.vis { opacity:1; transform:none; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      /* Nav */
+      nav { padding:16px 24px; }
+      .nav-links { display:none; }
+      .nav-cta { padding:10px 18px; font-size:.6rem; }
+
+      /* Hero */
+      .hero { grid-template-columns:1fr; min-height:auto; }
+      .hero-left {
+        padding:100px 24px 64px;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8925A' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .hero-h1 { font-size:2.6rem; }
+      .hero-right { display:none; }
+
+      /* Strip */
+      .strip { padding:0 16px; flex-wrap:wrap; }
+      .strip-item { flex:0 0 25%; padding:24px 8px; border-right:none; border-bottom:1px solid rgba(255,255,255,.06); }
+      .strip-label { font-size:.48rem; }
+      .strip-icon { width:28px; height:28px; }
+
+      /* About */
+      .philosophy { grid-template-columns:1fr; padding:80px 24px; gap:48px; }
+      .philosophy-left { display:none; }
+
+      /* Services */
+      .services { padding:80px 24px; }
+      .services-bg-word { display:none; }
+      .services-intro-grid { grid-template-columns:1fr; }
+      .services-cards { grid-template-columns:1fr 1fr; gap:16px; }
+      .svc { padding:28px 20px; }
+      .svc-icon { width:36px; height:36px; margin-bottom:20px; }
+      .svc-num { font-size:3rem; }
+
+      /* Values/Community */
+      .community { padding:80px 24px; grid-template-columns:1fr; gap:48px; }
+      .community-visual { position:static; }
+      .comm-grid { grid-template-rows:200px 200px; }
+
+      /* Portfolio */
+      .portfolio { padding:80px 24px; }
+      .port-grid { grid-template-columns:1fr; }
+      .port-card:nth-child(1) { grid-row:auto; }
+      .port-card:nth-child(1) .port-img { height:260px; }
+      .port-card:nth-child(2) .port-img,
+      .port-card:nth-child(3) .port-img,
+      .port-card:nth-child(4) .port-img,
+      .port-card:nth-child(5) .port-img,
+      .port-card:nth-child(6) .port-img { height:220px; }
+      .port-info { opacity:1; transform:none; }
+
+      /* Testimonial */
+      .testi { padding:80px 24px; grid-template-columns:1fr; }
+      .testi-mark { font-size:6rem; }
+      .testi-body { font-size:1rem; }
+
+      /* Contact */
+      .contact { grid-template-columns:1fr; padding:80px 24px; gap:48px; }
+      .cf-row { grid-template-columns:1fr; }
+
+      /* Footer */
+      footer { flex-direction:column; gap:20px; padding:40px 24px; text-align:center; }
+      .foot-links { flex-wrap:wrap; justify-content:center; gap:16px; }
+
+      /* Years callout */
+      .years-callout { flex-direction:column; gap:16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-h1 { font-size:2rem; }
+      .strip-item { flex:0 0 50%; }
+      .services-cards { grid-template-columns:1fr; }
+      nav { padding:14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="logo">Mishri Events<sup>®</sup></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Work</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's Connect</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-kicker"><span class="hero-kicker-line"></span>Seattle, Washington</p>
+      <h1 class="hero-h1">
+        Celebrations<br>rooted in<br><em>community</em><br>&amp; intention.
+      </h1>
+      <p class="hero-body">
+        Mishri Events crafts meaningful, luxury gatherings — from weddings of 300+ that feel deeply personal, to intimate celebrations and corporate experiences that genuinely connect people.
+      </p>
+      <p class="hero-tagline">Sweet by name. Unforgettable by design.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-warm">Begin Your Story</a>
+        <a href="#about" class="btn-ghost">Meet Manisha</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll to explore
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image-wrap">
+        <img src="images/details.jpg" alt="Event details by Mishri Events">
+        <div class="hero-img-overlay"></div>
+        <div class="hero-decorative">
+          <div class="hero-decorative-text">M</div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-inner">
+            <div class="hero-badge-num">50+</div>
+            <div class="hero-badge-label">Events<br>Planned</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <!-- Weddings: envelope with heart -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="10" width="28" height="20" rx="2"/>
+        <path d="M4 12 L18 22 L32 12"/>
+        <path d="M18 17 Q16 14 14 15 Q12 16 13 18 Q14 20 18 22 Q22 20 23 18 Q24 16 22 15 Q20 14 18 17"/>
+      </svg>
+      <div class="strip-label">Weddings</div>
+    </div>
+    <!-- Corporate Summits: laptop -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="7" y="9" width="22" height="15" rx="1.5"/>
+        <path d="M3 24 L33 24 L30 30 L6 30 Z"/>
+        <line x1="13" y1="27" x2="23" y2="27"/>
+      </svg>
+      <div class="strip-label">Corporate Summits</div>
+    </div>
+    <!-- Hackathons: lightning bolt -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 4 L12 20 L18 20 L15 32 L24 16 L18 16 Z"/>
+      </svg>
+      <div class="strip-label">Hackathons</div>
+    </div>
+    <!-- Anniversary Parties: cake -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="20" width="24" height="12" rx="1.5"/>
+        <rect x="10" y="14" width="16" height="6"/>
+        <line x1="14" y1="14" x2="14" y2="8"/>
+        <line x1="22" y1="14" x2="22" y2="8"/>
+        <path d="M14 8 Q14 5 14 6 Q13 4 14 5"/>
+        <path d="M22 8 Q22 5 22 6 Q21 4 22 5"/>
+        <path d="M6 26 Q10 23 14 26 Q18 29 22 26 Q26 23 30 26"/>
+      </svg>
+      <div class="strip-label">Anniversary Parties</div>
+    </div>
+    <!-- Venue Openings: arched door -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 30 L10 16 Q10 8 18 8 Q26 8 26 16 L26 30"/>
+        <line x1="6" y1="30" x2="30" y2="30"/>
+        <circle cx="22" cy="20" r="1.2" fill="#FAF6EF"/>
+      </svg>
+      <div class="strip-label">Venue Openings</div>
+    </div>
+    <!-- Field Day: sun -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="18" r="5"/>
+        <line x1="18" y1="4" x2="18" y2="8"/>
+        <line x1="18" y1="28" x2="18" y2="32"/>
+        <line x1="4" y1="18" x2="8" y2="18"/>
+        <line x1="28" y1="18" x2="32" y2="18"/>
+        <line x1="8.5" y1="8.5" x2="11.5" y2="11.5"/>
+        <line x1="24.5" y1="24.5" x2="27.5" y2="27.5"/>
+        <line x1="27.5" y1="8.5" x2="24.5" y2="11.5"/>
+        <line x1="11.5" y1="24.5" x2="8.5" y2="27.5"/>
+      </svg>
+      <div class="strip-label">Annual Field Day</div>
+    </div>
+    <!-- Halloween: ghost -->
+    <div class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 32 L8 16 Q8 6 18 6 Q28 6 28 16 L28 32 L24 28 L20 32 L16 28 L12 32 Z"/>
+        <circle cx="14" cy="17" r="1.5" fill="#FAF6EF"/>
+        <circle cx="22" cy="17" r="1.5" fill="#FAF6EF"/>
+        <path d="M14 22 Q18 25 22 22"/>
+      </svg>
+      <div class="strip-label">Halloween Parties</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="philosophy" id="about">
+    <div class="philosophy-left reveal">
+      <div class="phil-img-outer">
+        <img src="images/manisha.jpg" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; object-position: top center;">
+      </div>
+      <div class="phil-accent">
+        <div class="phil-accent-num">✦</div>
+        <div class="phil-accent-text">Sweetness in every detail</div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <p class="eyebrow">About Mishri</p>
+      <h2>Sweet by name. Known for the moments <em>that linger.</em></h2>
+      <p class="body-text">Mishri — the Hindi word for "sweet" — is both a name and a promise. Every event we touch is infused with the warmth of genuine care, cultural understanding, and a meticulous attention to detail that only comes from truly loving what you do.</p>
+      <div class="pull-quote">"The best events don't just look beautiful — they feel like the people in them."</div>
+      <p class="body-text">Mishri Events has spent nearly a decade bringing this philosophy to weddings across the Pacific Northwest and beyond — from grand South Asian celebrations of 300+ guests to intimate gatherings of twenty. We've also produced corporate summits at Google where human connection matters as much as flawless logistics. Whatever the scale, the standard of care is the same.</p>
+      <p class="body-text">Manisha's relationship with celebrations runs deeper than planning — she has served as emcee at close family and friend weddings, standing at the center of some of the most sacred moments in people's lives. That warmth doesn't leave you when you step behind the scenes. It's in everything we do.</p>
+      <div class="years-callout">
+        <div class="years-stat">
+          <div class="years-num">8+</div>
+          <div class="years-text">Years in the industry<br><span>Planning events since 2017</span></div>
+        </div>
+      </div>
+      <div class="sig">Manisha Gupta</div>
+      <div class="sig-sub">Founder & Lead Planner, Mishri Events</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-bg-word">Craft</div>
+    <div class="services-intro-grid">
+      <div class="reveal"><p class="eyebrow">Our Services</p><h2>Every detail, <em>thoughtfully</em> held</h2></div>
+      <p class="services-tagline reveal d1">Whether you need someone to carry the full weight of planning or simply to step in on the day you've spent months preparing for — we show up for you, completely.</p>
+    </div>
+    <div class="services-cards">
+      <div class="svc reveal">
+        <div class="svc-num">01</div>
+        <!-- Clipboard with checklist -->
+        <svg class="svc-icon" viewBox="0 0 48 48" fill="none" stroke="#C07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="10" width="28" height="34" rx="2"/>
+          <rect x="18" y="6" width="12" height="8" rx="2"/>
+          <line x1="17" y1="22" x2="31" y2="22"/>
+          <line x1="17" y1="28" x2="31" y2="28"/>
+          <line x1="17" y1="34" x2="25" y2="34"/>
+          <polyline points="13,22 15,24 13,22"/>
+        </svg>
+        <div class="svc-name">Full-Service Planning</div>
+        <div class="svc-desc">From the first spark of an idea to the final moment of your event — we carry the full journey with you. Venue, vendors, design, timeline, and day-of execution, all handled with care.</div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-num">02</div>
+        <!-- Calendar with heart -->
+        <svg class="svc-icon" viewBox="0 0 48 48" fill="none" stroke="#C07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="12" width="32" height="28" rx="2"/>
+          <line x1="8" y1="20" x2="40" y2="20"/>
+          <line x1="16" y1="8" x2="16" y2="16"/>
+          <line x1="32" y1="8" x2="32" y2="16"/>
+          <path d="M24 37 Q21 33 19 31 Q17 28 20 26 Q22 24.5 24 27 Q26 24.5 28 26 Q31 28 29 31 Q27 33 24 37Z"/>
+        </svg>
+        <div class="svc-name">Day-of Coordination</div>
+        <div class="svc-desc">You did the dreaming. We bring it to life. Our day-of coordination ensures everything flows seamlessly — so you can be fully present with the people you love.</div>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-num">03</div>
+        <!-- Single star -->
+        <svg class="svc-icon" viewBox="0 0 48 48" fill="none" stroke="#C07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="24,8 27.5,18.5 39,18.5 29.5,25 33,35.5 24,29 15,35.5 18.5,25 9,18.5 20.5,18.5"/>
+        </svg>
+        <div class="svc-name">Vendor Sourcing</div>
+        <div class="svc-desc">Access our handpicked network of photographers, florists, caterers, and more. Every recommendation is personal — vendors we trust because we've seen their work up close.</div>
+      </div>
+      <div class="svc reveal d3">
+        <div class="svc-num">04</div>
+        <!-- Simple mic -->
+        <svg class="svc-icon" viewBox="0 0 48 48" fill="none" stroke="#C07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="24" cy="18" rx="8" ry="12"/>
+          <line x1="24" y1="30" x2="24" y2="40"/>
+          <path d="M14 26 Q14 36 24 36 Q34 36 34 26"/>
+          <line x1="18" y1="42" x2="30" y2="42"/>
+        </svg>
+        <div class="svc-name">Wedding Emcee</div>
+        <div class="svc-desc">Having emceed weddings for close family and friends, Manisha brings a rare warmth to the mic — someone who knows the room, loves the couple, and holds the energy of the day with grace and ease.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community" id="values">
+    <div class="reveal">
+      <p class="eyebrow">Our Values</p>
+      <h2>Community is at the <em>heart</em> of everything we do</h2>
+      <p class="body-text">We don't believe in cookie-cutter celebrations. We believe in the specific, unrepeatable magic of your people in a room together — whether that's 20 or 400. That's what we build toward — every time.</p>
+      <div class="values-list">
+        <div class="val">
+          <div><div class="val-name"><svg style="width:10px;height:10px;margin-right:10px;vertical-align:middle;" viewBox="0 0 10 10" fill="#C07A5A"><polygon points="5,0 10,5 5,10 0,5"/></svg>Warmth at Any Scale</div><div class="val-desc">Whether you're gathering 20 people or 400, every guest deserves to feel seen. We bring the same personal care to a grand South Asian wedding as we do to an intimate dinner celebration.</div></div>
+        </div>
+        <div class="val">
+          <div><div class="val-name"><svg style="width:10px;height:10px;margin-right:10px;vertical-align:middle;" viewBox="0 0 10 10" fill="#C07A5A"><polygon points="5,0 10,5 5,10 0,5"/></svg>Purposeful Design</div><div class="val-desc">Nothing is an afterthought. Every detail is made with purpose — rooted in your story, your culture, and the specific people you're gathering.</div></div>
+        </div>
+        <div class="val">
+          <div><div class="val-name"><svg style="width:10px;height:10px;margin-right:10px;vertical-align:middle;" viewBox="0 0 10 10" fill="#C07A5A"><polygon points="5,0 10,5 5,10 0,5"/></svg>Genuine Partnership</div><div class="val-desc">We're not just planners — we're collaborators. We listen deeply, ask better questions, and show up as a trusted partner from first call to last dance.</div></div>
+        </div>
+        <div class="val">
+          <div><div class="val-name"><svg style="width:10px;height:10px;margin-right:10px;vertical-align:middle;" viewBox="0 0 10 10" fill="#C07A5A"><polygon points="5,0 10,5 5,10 0,5"/></svg>Cultural Fluency</div><div class="val-desc">We honor the rituals and traditions that make your celebration uniquely yours — weaving them into every element with respect and creativity.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="community-visual reveal d2">
+      <div class="comm-grid">
+        <div class="comm-block"><img src="images/value1.jpg" alt="Weddings"><div class="comm-block-overlay"></div><div class="comm-center-text">Together</div><div class="comm-tag">Weddings</div></div>
+        <div class="comm-block"><img src="images/value2.jpg" alt="Corporate"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(184,146,90,.2)">Corp.</div><div class="comm-tag">Corporate</div></div>
+        <div class="comm-block"><img src="images/value3.jpeg" alt="Celebrations"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(61,43,31,.15)">Gather</div><div class="comm-tag dark">Celebrations</div></div>
+        <div class="comm-block"><img src="images/value4.jpg" alt="Field Day"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(255,255,255,.12)">Play</div><div class="comm-tag">Field Day</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="port-head">
+      <div class="reveal"><p class="eyebrow">Our Work</p><h2>A few moments we've been <em>honored to hold</em></h2></div>
+      <a href="#contact" class="port-link reveal">Start Your Event →</a>
+    </div>
+    <div class="port-grid">
+      <div class="port-card reveal">
+        <div class="port-img port-bg-1" style="height:580px"><img src="images/portfolio1.jpg" alt="Wedding Celebration" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;"></div>
+        <div class="port-info"><div class="port-type">Wedding · Full-Service</div><div class="port-name">A Wedding Celebration</div></div>
+      </div>
+      <div class="port-card reveal d1">
+        <div class="port-img port-bg-2" style="height:260px"><img src="images/portfolio2.jpg" alt="Annual Field Day" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+        <div class="port-info"><div class="port-type">Community · Annual Event</div><div class="port-name">Annual Field Day</div></div>
+      </div>
+      <div class="port-card reveal d2">
+        <div class="port-img port-bg-3" style="height:260px"><img src="images/portfolio3.jpeg" alt="Rooftop Wedding" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 70%;"></div>
+        <div class="port-info"><div class="port-type">Wedding · Rooftop</div><div class="port-name">A Rooftop Wedding</div></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-img port-bg-4" style="height:260px"><img src="images/portfolio4.jpg" alt="25-Year Anniversary" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
+        <div class="port-info"><div class="port-type">Anniversary · Celebration</div><div class="port-name">A 25-Year Celebration</div></div>
+      </div>
+      <div class="port-card reveal d1">
+        <div class="port-img port-bg-5" style="height:260px"><img src="images/portfolio5.jpg" alt="Jhalak National Dance Competition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+        <div class="port-info"><div class="port-type">Cultural · National Competition</div><div class="port-name">Jhalak — National Dance Competition</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testi">
+    <div class="testi-mark reveal">"</div>
+    <div class="reveal d1">
+      <p class="testi-body">Manisha didn't just plan our wedding — she understood who we are as a community, and made every single guest feel like they were part of something sacred. Not just witnesses, but family.</p>
+      <div class="testi-attr">— A Mishri Events Couple · Seattle, WA</div>
+    </div>
+    <div class="testi-mark reveal" style="transform:rotate(180deg)">"</div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <p class="eyebrow">Get in Touch</p>
+      <h2>Let's build something <em>meaningful</em> together</h2>
+      <p class="contact-note">Every extraordinary gathering begins with a conversation. Whether you're envisioning a dream wedding, a corporate summit that inspires, or a celebration of the people and moments that define you — we'd love to hear your story.</p>
+      <div class="contact-deets">
+        <div class="cdeet"><div class="cdeet-k">Email</div><div class="cdeet-v"><a href="/cdn-cgi/l/email-protection#27425142495354674a46494e544f46094a42"><span class="__cf_email__" data-cfemail="c8adbeada6bcbb88a5a9a6a1bba0a9e6a5ad">[email&#160;protected]</span></a></div></div>
+        <div class="cdeet"><div class="cdeet-k">Based in</div><div class="cdeet-v">Seattle, WA</div></div>
+        <div class="cdeet"><div class="cdeet-k">Events in</div><div class="cdeet-v">Seattle · Austin · Dallas · San Jose · New Orleans · New York City</div></div>
+      </div>
+    </div>
+    <div class="cf reveal d1">
+      <form id="contactForm">
+        <div class="cf-row">
+          <div class="cf-group"><label>First Name</label><input type="text" name="first_name" placeholder="Priya" required></div>
+          <div class="cf-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Sharma"></div>
+        </div>
+        <div class="cf-group"><label>Email</label><input type="email" name="email" placeholder="priyasharma@gmail.com" required></div>
+        <div class="cf-row">
+          <div class="cf-group">
+            <label>Event Type</label>
+            <select name="event_type">
+              <option value="" disabled selected>Select type</option>
+              <option>Wedding</option>
+              <option>Corporate Event</option>
+              <option>Hackathon</option>
+              <option>Anniversary Party</option>
+              <option>Annual Field Day</option>
+              <option>Halloween Party</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="cf-group"><label>Event Date</label><input type="text" name="event_date" placeholder="MM / YYYY"></div>
+        </div>
+        <div class="cf-group"><label>Tell us about your vision</label><textarea name="message" placeholder="Who are the people? What does it feel like? We want to hear it all…"></textarea></div>
+        <button type="submit" class="cf-submit" id="submitBtn">Send My Vision</button>
+      </form>
+      <div id="formSuccess" style="display:none; margin-top:32px; padding:32px 28px; border-left:3px solid var(--terracotta); background:rgba(192,122,90,.07);">
+        <p style="font-family:'Playfair Display',serif; font-size:1.3rem; font-style:italic; color:var(--fig); margin-bottom:8px;">Thank you — we'll be in touch. ✦</p>
+        <p style="font-size:.85rem; color:var(--fig-mid); font-weight:300; line-height:1.8;">Your message has been received. Manisha will personally be in touch with you shortly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-logo">Mishri Events<sup>®</sup></div>
+    <div class="foot-copy">© Mishri Events · Est. 2017 · Seattle, WA · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb9e8d9e958f88bb969a959288939ad5969e">[email&#160;protected]</a></div>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Nav
+    window.addEventListener('scroll',()=>{ document.getElementById('nav').classList.toggle('stuck',scrollY>50); });
+
+    // Reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
+      },{ threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal,.strip-item').forEach(el=>{
+        el.classList.add('animate');
+        obs.observe(el);
+      });
+    });
+
+    // Form — AJAX to Formspree, stays on page
+    document.getElementById('contactForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      const data = new FormData(this);
+      try {
+        cons
