@@ -444,8 +444,9 @@
       /* About */
       .philosophy { grid-template-columns:1fr; padding:80px 24px; gap:32px; }
       .philosophy-right { display:flex; flex-direction:column; align-items:flex-start; }
-      .philosophy-left { display:block; margin-bottom:24px; flex-shrink:0; }
-      .phil-img-outer { width:120px; height:120px; padding-bottom:0; border-radius:50%; overflow:hidden; }
+      .philosophy-left { display:block; width:120px; height:120px; border-radius:50%; overflow:hidden; margin-bottom:24px; flex-shrink:0; position:relative; }
+      .phil-img-outer { width:120px; height:120px; padding-bottom:0; border-radius:50%; overflow:hidden; position:relative; height:120px; }
+      .phil-img-outer img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; object-position:top center; }
       .phil-accent { display:none; }
 
       /* Services */
@@ -739,7 +740,7 @@
       <div class="comm-grid">
         <div class="comm-block"><img src="images/value1.jpg" alt="Weddings"><div class="comm-block-overlay"></div><div class="comm-center-text">Together</div><div class="comm-tag">Weddings</div></div>
         <div class="comm-block"><img src="images/value2.jpg" alt="Corporate"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(184,146,90,.2)">Corp.</div><div class="comm-tag">Corporate</div></div>
-        <div class="comm-block"><img src="images/value3.jpeg" alt="Celebrations"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(61,43,31,.15)">Gather</div><div class="comm-tag dark">Celebrations</div></div>
+        <div class="comm-block"><img src="images/value3.jpeg" alt="Celebrations" style="object-position:top center;"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(61,43,31,.15)">Gather</div><div class="comm-tag dark">Celebrations</div></div>
         <div class="comm-block"><img src="images/value4.jpg" alt="Field Day"><div class="comm-block-overlay"></div><div class="comm-center-text" style="color:rgba(255,255,255,.12)">Play</div><div class="comm-tag">Field Day</div></div>
       </div>
     </div>
@@ -761,8 +762,8 @@
         <div class="port-info"><div class="port-type">Community · Annual Event</div><div class="port-name">Annual Field Day</div></div>
       </div>
       <div class="port-card reveal d2">
-        <div class="port-img port-bg-3" style="height:260px"><img src="images/portfolio3.jpeg" alt="Rooftop Wedding" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 70%;"></div>
-        <div class="port-info"><div class="port-type">Wedding · Rooftop</div><div class="port-name">A Rooftop Wedding</div></div>
+        <div class="port-img port-bg-3" style="height:260px"><img src="images/portfolio3.jpeg" alt="Divya & Rohith Welcome Night" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;"></div>
+        <div class="port-info"><div class="port-type">Wedding · Welcome Night</div><div class="port-name">Mehndi Night</div></div>
       </div>
       <div class="port-card reveal">
         <div class="port-img port-bg-4" style="height:260px"><img src="images/portfolio4.jpg" alt="25-Year Anniversary" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
@@ -780,8 +781,8 @@
   <section class="testi">
     <div class="testi-mark reveal">"</div>
     <div class="reveal d1">
-      <p class="testi-body">Manisha didn't just plan our wedding — she understood who we are as a community, and made every single guest feel like they were part of something sacred. Not just witnesses, but family.</p>
-      <div class="testi-attr">— A Mishri Events Couple · Seattle, WA</div>
+      <p class="testi-body">"Manisha was my absolute go-to person while planning my wedding. She helped us create the schedule for our Haldi and Welcome Night, emceed our Welcome Night, and made the entire process feel so much more manageable. She has a natural talent for creating a great guest experience — from coordinating hair and makeup logistics to making sure all the little details for photos are prepared. She had everything covered. I would highly recommend her to any couple planning a wedding!"</p>
+      <div class="testi-attr">— A Mishri Events Couple · November 2025</div>
     </div>
     <div class="testi-mark reveal" style="transform:rotate(180deg)">"</div>
   </section>
