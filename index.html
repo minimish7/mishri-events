@@ -3,7 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mishri Events — Sweet by Name. Unforgettable by Design.</title>
+  <title>Mishri Events — Seattle Indian Wedding Planner & Event Planning Company</title>
+  <meta name="description" content="Mishri Events is a Seattle-based Indian and South Asian wedding planning company. Specializing in desi weddings, mehndi nights, corporate events and celebrations. Serving Seattle, Austin, Dallas, San Jose, New Orleans and NYC. Est. 2017."/>
+  <meta name="keywords" content="Seattle Indian wedding planner, Seattle desi wedding planner, South Asian wedding planner Seattle, Indian wedding coordinator Seattle, desi wedding planner 2026, Seattle wedding planner, mehndi night planner Seattle, haldi planner Seattle, South Asian event planning, Indian wedding planning Pacific Northwest, corporate event planner Seattle, Mishri Events, Manisha Gupta"/>
+  <meta name="author" content="Manisha Gupta, Mishri Events"/>
+  <link rel="canonical" href="https://www.mishrievents.com"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mishri Events — Seattle Indian Wedding Planner"/>
+  <meta property="og:description" content="Luxury South Asian and Indian wedding planning in Seattle and beyond. Weddings, mehndi nights, corporate events and celebrations. Sweet by name. Unforgettable by design."/>
+  <meta property="og:url" content="https://www.mishrievents.com"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Mishri Events"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Mishri Events — Seattle Indian Wedding Planner"/>
+  <meta name="twitter:description" content="Luxury South Asian and Indian wedding planning in Seattle and beyond. Sweet by name. Unforgettable by design."/>
+
+  <!-- Schema.org Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Mishri Events",
+    "description": "Seattle-based Indian and South Asian wedding planning company specializing in desi weddings, mehndi nights, haldi ceremonies, corporate events and celebrations.",
+    "url": "https://www.mishrievents.com",
+    "email": "events@manisha.me",
+    "founder": "Manisha Gupta",
+    "foundingDate": "2017",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Seattle",
+      "addressRegion": "WA",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Seattle", "Austin", "Dallas", "San Jose", "New Orleans", "New York City"],
+    "serviceType": ["Indian Wedding Planning", "South Asian Wedding Planning", "Desi Wedding Planning", "Corporate Event Planning", "Wedding Emcee", "Day-of Coordination", "Mehndi Night Planning", "Haldi Ceremony Planning"],
+    "priceRange": "$$$$",
+    "sameAs": ["https://www.mishrievents.com", "https://mishri.events"]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%233D2B1F'/><text y='78' x='50' text-anchor='middle' font-size='72' font-family='Georgia,serif' font-style='italic' fill='%23C07A5A'>M</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -196,8 +237,12 @@
       align-items:center; justify-content:center;
       text-align:center; gap:16px;
       opacity:1; transform:none;
-      transition:opacity .6s ease, transform .6s ease;
+      transition:opacity .6s ease, transform .6s ease, background .2s ease;
+      text-decoration:none; cursor:pointer;
     }
+    .strip-item:hover { background:rgba(192,122,90,.08); }
+    .strip-item:hover .strip-icon { opacity:1; }
+    .strip-item:hover .strip-label { color:rgba(244,237,227,.8); }
     .strip-item.animate { opacity:0; transform:translateY(18px); }
     .strip-item.animate.vis { opacity:1; transform:none; }
     .strip-item:last-child { border-right:none; }
@@ -522,7 +567,7 @@
         Celebrations<br>rooted in<br><em>community</em><br>&amp; intention.
       </h1>
       <p class="hero-body">
-        Mishri Events crafts meaningful, luxury gatherings — from weddings of 300+ that feel deeply personal, to intimate celebrations and corporate experiences that genuinely connect people.
+        Mishri Events crafts meaningful, luxury gatherings — from South Asian and Indian weddings of 300+ that feel deeply personal, to intimate celebrations and corporate experiences that genuinely connect people.
       </p>
       <p class="hero-tagline">Sweet by name. Unforgettable by design.</p>
       <div class="hero-actions">
@@ -554,32 +599,32 @@
   <!-- STRIP -->
   <div class="strip">
     <!-- Weddings: envelope with heart -->
-    <div class="strip-item">
+    <a href="services.html#weddings" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="4" y="10" width="28" height="20" rx="2"/>
         <path d="M4 12 L18 22 L32 12"/>
         <path d="M18 17 Q16 14 14 15 Q12 16 13 18 Q14 20 18 22 Q22 20 23 18 Q24 16 22 15 Q20 14 18 17"/>
       </svg>
       <div class="strip-label">Weddings</div>
-    </div>
+    </a>
     <!-- Corporate Summits: laptop -->
-    <div class="strip-item">
+    <a href="services.html#corporate" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="7" y="9" width="22" height="15" rx="1.5"/>
         <path d="M3 24 L33 24 L30 30 L6 30 Z"/>
         <line x1="13" y1="27" x2="23" y2="27"/>
       </svg>
       <div class="strip-label">Corporate Summits</div>
-    </div>
+    </a>
     <!-- Hackathons: lightning bolt -->
-    <div class="strip-item">
+    <a href="services.html#corporate" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 4 L12 20 L18 20 L15 32 L24 16 L18 16 Z"/>
       </svg>
       <div class="strip-label">Hackathons</div>
-    </div>
+    </a>
     <!-- Anniversary Parties: cake -->
-    <div class="strip-item">
+    <a href="services.html#celebrations" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="6" y="20" width="24" height="12" rx="1.5"/>
         <rect x="10" y="14" width="16" height="6"/>
@@ -590,18 +635,18 @@
         <path d="M6 26 Q10 23 14 26 Q18 29 22 26 Q26 23 30 26"/>
       </svg>
       <div class="strip-label">Anniversary Parties</div>
-    </div>
+    </a>
     <!-- Venue Openings: arched door -->
-    <div class="strip-item">
+    <a href="services.html#celebrations" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M10 30 L10 16 Q10 8 18 8 Q26 8 26 16 L26 30"/>
         <line x1="6" y1="30" x2="30" y2="30"/>
         <circle cx="22" cy="20" r="1.2" fill="#FAF6EF"/>
       </svg>
       <div class="strip-label">Venue Openings</div>
-    </div>
+    </a>
     <!-- Field Day: sun -->
-    <div class="strip-item">
+    <a href="services.html#celebrations" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="18" cy="18" r="5"/>
         <line x1="18" y1="4" x2="18" y2="8"/>
@@ -614,9 +659,9 @@
         <line x1="11.5" y1="24.5" x2="8.5" y2="27.5"/>
       </svg>
       <div class="strip-label">Annual Field Day</div>
-    </div>
+    </a>
     <!-- Halloween: ghost -->
-    <div class="strip-item">
+    <a href="services.html#celebrations" class="strip-item">
       <svg class="strip-icon" viewBox="0 0 36 36" fill="none" stroke="#FAF6EF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 32 L8 16 Q8 6 18 6 Q28 6 28 16 L28 32 L24 28 L20 32 L16 28 L12 32 Z"/>
         <circle cx="14" cy="17" r="1.5" fill="#FAF6EF"/>
@@ -624,7 +669,7 @@
         <path d="M14 22 Q18 25 22 22"/>
       </svg>
       <div class="strip-label">Halloween Parties</div>
-    </div>
+    </a>
   </div>
 
   <!-- ABOUT -->
@@ -641,7 +686,7 @@
     <div class="reveal d2">
       <p class="eyebrow">About Mishri</p>
       <h2>Sweet by name. Known for the moments <em>that linger.</em></h2>
-      <p class="body-text">Mishri — the Hindi word for "sweet" — is both a name and a promise. Every event we touch is infused with the warmth of genuine care, cultural understanding, and a meticulous attention to detail that only comes from truly loving what you do.</p>
+      <p class="body-text">Mishri — the Hindi word for "sweet" — is both a name and a promise. Every event we touch is infused with the warmth of genuine care, cultural understanding, and a meticulous attention to detail that only comes from truly loving what you do. We specialize in South Asian and desi weddings, from mehndi nights and haldi ceremonies to welcome nights and baraats.</p>
       <div class="pull-quote">"The best events don't just look beautiful — they feel like the people in them."</div>
       <p class="body-text">Mishri Events has spent nearly a decade bringing this philosophy to weddings across the Pacific Northwest and beyond — from grand South Asian celebrations of 300+ guests to intimate gatherings of twenty. We've also produced corporate summits at Google where human connection matters as much as flawless logistics. Whatever the scale, the standard of care is the same.</p>
       <p class="body-text">Manisha's relationship with celebrations runs deeper than planning — she has served as emcee at close family and friend weddings, standing at the center of some of the most sacred moments in people's lives. That warmth doesn't leave you when you step behind the scenes. It's in everything we do.</p>
@@ -738,10 +783,10 @@
     </div>
     <div class="community-visual reveal d2">
       <div class="comm-grid">
-        <div class="comm-block"><img src="images/value1.jpg" alt="Weddings"><div class="comm-block-overlay"></div><div class="comm-tag">Weddings</div></div>
-        <div class="comm-block"><img src="images/value2.jpg" alt="Corporate" style="object-position:bottom center;"><div class="comm-block-overlay"></div><div class="comm-tag">Corporate</div></div>
-        <div class="comm-block"><img src="images/value3.jpeg" alt="Celebrations" style="object-position:center 20%;"><div class="comm-block-overlay"></div><div class="comm-tag dark">Celebrations</div></div>
-        <div class="comm-block"><img src="images/value4.jpg" alt="Field Day"><div class="comm-block-overlay"></div><div class="comm-tag">Field Day</div></div>
+        <div class="comm-block"><img src="images/value1.jpg" alt="Indian wedding ceremony planned by Mishri Events Seattle"><div class="comm-block-overlay"></div><div class="comm-tag">Weddings</div></div>
+        <div class="comm-block"><img src="images/value2.jpg" alt="Corporate event planning by Mishri Events Seattle"><div class="comm-block-overlay"></div><div class="comm-tag">Corporate</div></div>
+        <div class="comm-block"><img src="images/value3.jpeg" alt="South Asian celebration planned by Mishri Events" style="object-position:center 20%;"><div class="comm-block-overlay"></div><div class="comm-tag dark">Celebrations</div></div>
+        <div class="comm-block"><img src="images/value4.jpg" alt="Annual field day event organized by Mishri Events Seattle"><div class="comm-block-overlay"></div><div class="comm-tag">Field Day</div></div>
       </div>
     </div>
   </section>
